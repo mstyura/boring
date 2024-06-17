@@ -496,6 +496,11 @@ fn ensure_patches_applied(config: &Config) -> io::Result<()> {
         apply_patch(config, "underscore-wildcards.patch")?;
     }
 
+    if config.features.duplicate_sigalgs {
+        println!("cargo:warning=applying duplicate signalgs patch to boringssl");
+        apply_patch(config, "allow-sigalgs-dups.patch")?;
+    }
+
     Ok(())
 }
 
@@ -558,7 +563,8 @@ fn built_boring_source_path(config: &Config) -> &PathBuf {
         } else if config.env.source_path.is_some()
             && (config.features.rpk
                 || config.features.pq_experimental
-                || config.features.underscore_wildcards)
+                || config.features.underscore_wildcards
+                || config.features.duplicate_sigalgs)
         {
             panic!(
                 "BORING_BSSL_ASSUME_PATCHED must be set when setting

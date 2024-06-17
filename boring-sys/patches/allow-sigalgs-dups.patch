@@ -1,0 +1,19 @@
+diff --git a/src/ssl/ssl_privkey.cc b/src/ssl/ssl_privkey.cc
+index 46bef32e8..ef8f01fb5 100644
+--- a/src/ssl/ssl_privkey.cc
++++ b/src/ssl/ssl_privkey.cc
+@@ -591,12 +591,14 @@ static bool sigalgs_unique(Span<const uint16_t> in_sigalgs) {
+ 
+   qsort(sigalgs.data(), sigalgs.size(), sizeof(uint16_t), compare_uint16_t);
+ 
++/*
+   for (size_t i = 1; i < sigalgs.size(); i++) {
+     if (sigalgs[i - 1] == sigalgs[i]) {
+       OPENSSL_PUT_ERROR(SSL, SSL_R_DUPLICATE_SIGNATURE_ALGORITHM);
+       return false;
+     }
+   }
++*/
+ 
+   return true;
+ }

@@ -55,6 +55,8 @@ features = ["rpk", "pq-experimental", "underscore-wildcards"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [features]
+default = ["duplicate-sigalgs"]
+
 # Use a FIPS-validated version of boringssl.
 fips = []
 
@@ -63,6 +65,9 @@ fips-link-precompiled = []
 
 # Enables Raw public key API (https://datatracker.ietf.org/doc/html/rfc7250)
 rpk = []
+
+# Allow signalgs duplicates to mimic Apple's behaviour.
+duplicate-sigalgs = []
 
 # Applies a patch (`patches/boring-pq.patch`) to the boringSSL source code that
 # enables support for PQ key exchange. This feature is necessary in order to
